@@ -1,6 +1,7 @@
-   const express = require('express');
-const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+const express = require('express');
+const fs = require('fs');
 const favicon = require('serve-favicon');
 const admin = require("./route/admin");
 const bodyParser = require('body-parser');
@@ -8,7 +9,6 @@ const mongoose = require('mongoose');
 const sharp = require('sharp');
 const compression = require('compression');
 const app = express();
-require('dotenv').config();   
 const cookieParser = require('cookie-parser');
 const { generateAllSitemaps } = require('./route/sitemap');
 const handleDynamicRoutes = require('./route/serverMeta');

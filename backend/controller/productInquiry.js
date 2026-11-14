@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const Inquiry = require('../model/productInquiry');
 const nodemailer = require('nodemailer');
 

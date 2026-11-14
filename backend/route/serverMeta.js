@@ -10,7 +10,7 @@ const router = express.Router();
 // Helper function to fetch product metadata
 async function fetchProductMeta(slug, metaInfo, res) {
   try {
-    const productResponse = await axios.get(`http://localhost:3040/api/petrochemProduct/getbySlug?slug=${slug}`);
+    const productResponse = await axios.get(`https://galaxypetro.in/api/petrochemProduct/getbySlug?slug=${slug}`);
     console.log('Product API response:', productResponse.data);
     const product = productResponse.data;
 
@@ -179,6 +179,7 @@ router.get('*', async (req, res, next) => {
 
     setOrCreateMeta('description', 'content', metaInfo.description);
     setOrCreateMeta('keywords', 'content', metaInfo.keywords);
+    setOrCreateMeta('robots', 'content', 'index, follow');
     setOrCreateMeta('og:title', 'content', metaInfo.title, 'property');
     setOrCreateMeta('og:description', 'content', metaInfo.description, 'property');
     setOrCreateMeta('og:image', 'content', metaInfo.ogImage, 'property');

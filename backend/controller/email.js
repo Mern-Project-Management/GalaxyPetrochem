@@ -12,18 +12,16 @@ const sendEmail = async (req, res) => {
 
     // SMTP configuration
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com', // Replace with your SMTP host
-      port: 587, // Replace with your SMTP port
-      secure: false, // Use true for 465, false for other ports
+      service: 'gmail',
       auth: {
-        user: 'harshit.dhodi2108@gmail.com', // Replace with your SMTP username
-        pass: 'jnkb ytek ilqm ryfm', // Replace with your SMTP password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Email options
     const mailOptions = {
-      from: 'mansihande09@gmail.com', // Sender address
+      from: process.env.EMAIL_USER,
       to: email, // Primary recipient
       cc: cc_email, // CC recipients
       subject: subject,
