@@ -53,9 +53,9 @@ router.get('*', async (req, res, next) => {
     const indexHtml = fs.readFileSync(indexPath, 'utf8');
     const $ = cheerio.load(indexHtml);
     let metaInfo = {
-      title: 'Default Title',
-      description: 'Default Description',
-      keywords: '',
+      title: 'Galaxy Petrochemicals',
+      description: 'Galaxy Petrochem - Premium Industrial Oils and Chemical Solutions',
+      keywords: 'petrochemical, industrial oils, lubricants, galaxy petrochem',
       ogImage: ''
     };
 
@@ -63,7 +63,13 @@ router.get('*', async (req, res, next) => {
     let isStaticPage = false;
 
     const pageData = await Meta.findOne({
-      $or: [{ pageSlug: currentPath }, { pageSlug: `/${currentPath}` }, { pageSlug: '' }],
+      $or: [
+        { pageSlug: currentPath },
+        { pageSlug: `/${currentPath}` },
+        { pageSlug: '' },
+        { pageSlug: '/' },
+        { pageSlug: 'home' }
+      ],
     }).lean();
 
     if (pageData) {
