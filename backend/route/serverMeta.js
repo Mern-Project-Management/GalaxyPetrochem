@@ -185,13 +185,19 @@ router.get('*', async (req, res, next) => {
 
     setOrCreateMeta('description', 'content', metaInfo.description);
     setOrCreateMeta('keywords', 'content', metaInfo.keywords);
+    setOrCreateMeta('author', 'content', 'Galaxy Petrochemicals');
     setOrCreateMeta('robots', 'content', 'index, follow');
+    setOrCreateMeta('og:type', 'content', 'website', 'property');
+    setOrCreateMeta('og:site_name', 'content', 'Galaxy Petrochemicals', 'property');
     setOrCreateMeta('og:title', 'content', metaInfo.title, 'property');
     setOrCreateMeta('og:description', 'content', metaInfo.description, 'property');
     setOrCreateMeta('og:image', 'content', metaInfo.ogImage, 'property');
     setOrCreateMeta('twitter:card', 'content', 'summary_large_image');
     setOrCreateMeta('twitter:title', 'content', metaInfo.title);
     setOrCreateMeta('twitter:description', 'content', metaInfo.description);
+    if (metaInfo.ogImage) {
+      setOrCreateMeta('twitter:image', 'content', metaInfo.ogImage);
+    }
 
     const canonicalUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
     let canonicalLink = $('link[rel="canonical"]');
